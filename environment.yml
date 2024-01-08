@@ -1,0 +1,47 @@
+# File environment.yml
+# Run with: mamba env create -f environment.yml
+
+name: 3Dseg-mip-depth
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+  - nvidia
+dependencies:
+  - python=3.9
+  - pip
+  - tqdm
+  - pytorch:cuda=11.6
+  - pytorch:pytorch=1.13.1
+  - torchvision>=0.11.2
+  - matplotlib
+  - ipython
+  - hydra-core
+  - pip:
+    - wandb
+    - ipdb
+    - nibabel 
+    - SimpleITK
+    - scikit-learn
+    - scikit-image
+    - scipy
+    - plotly
+    - pandas
+    - jupyter
+    - Pillow
+    - seaborn
+    - h5py
+    - torchio
+    - ipdb
+    - torchmetrics
+    - connected-components-3d
+    - fvcore
+
+
+# Afterwards:
+#     - torch-sparse
+#     - torch-scatter
+#     - torch-geometric
+# pip install --no-index --no-cache-dir pytorch3d -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py39_cu116_pyt1131/download.html
+# git clone https://github.com/deepmind/surface-distance.git
+# pip install surface-distance/
