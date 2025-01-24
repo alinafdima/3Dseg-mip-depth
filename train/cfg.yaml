@@ -1,0 +1,58 @@
+local:
+  experiments_root: ${oc.env:EXPERIMENTS_ROOT}/.hydra_all
+
+global:
+  seed: 142
+  lr: 1e-4
+  debug: False
+  subfolder: 'default'
+  experiment_name: 'default_test'
+  inference: False
+  
+  wandb_group: 'default'
+  wandb_tags: ['default']
+  wandb_notes: ''
+
+  timestamp: ${now:%Y-%m-%d_%H-%M-%S}
+  experiment_folder: ${local.experiments_root}/${global.experiment_name}/${global.timestamp}
+  
+  epochs: 0
+  iterations: 4000
+  validation_frequency: 200
+  iteration_based: True
+
+  alpha_depth: 0.5
+  alpha_2d: 0.5
+  alpha_3d: 0.
+
+
+model:
+  first_channels: 16
+  levels: 4
+  dropout_encoder: True
+  dropout_decoder: True
+  dropout_rate: 0
+  dropout_depth: 2
+  concatenation: False
+  load_model_source: ''
+  load_model_metric: 'dice_2d'
+
+
+dataset:
+  split_file: 'final_cv1.csv'
+  batch_size: 2
+  num_workers: 4
+  projection_viewpoints: null
+  viewpoint_assignment: 'ortho1_v1'
+  depth_file: 'depth_v1_ortho'
+
+
+hydra:
+  run:
+    dir: ${global.experiment_folder}
+  job:
+    name: ${global.experiment_name}
+    chdir: False
+  job_logging:
+    root:
+      level: INFO
